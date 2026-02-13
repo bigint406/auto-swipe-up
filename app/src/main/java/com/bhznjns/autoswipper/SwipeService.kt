@@ -52,7 +52,7 @@ class SwipeService : AccessibilityService() {
         swipeTask = object : Runnable {
             override fun run() {
                 val isSwipeEnabled = sharedPrefs.getBoolean("swipe_enabled", false)
-                val randomDelay = Random.nextLong(240000, 300000)
+                val randomDelay = Random.nextLong(110000, 130000)
                 handler.postDelayed(this, randomDelay)
                 if (isSwipeEnabled) {
                     performSwipe()
