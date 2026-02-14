@@ -77,10 +77,28 @@
             android:max="800" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="期望滑屏间隔 秒" />
+
+        <TextView
+            android:id="@+id/tv_interval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="120s" />
+
+        <SeekBar
+            android:id="@+id/sb_interval"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="600" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="建议范围：startY 85 到 92，endY 10 到 22，duration 120 到 220"
+            android:text="实际间隔会在期望值基础上随机浮动正负10秒，最短1秒。建议范围：startY 85到92，endY 10到22，duration 120到220"
             android:textSize="12sp" />
 
     </LinearLayout>

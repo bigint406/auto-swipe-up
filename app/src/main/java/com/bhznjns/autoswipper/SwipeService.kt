@@ -63,8 +63,8 @@ class SwipeService : AccessibilityService() {
             override fun run() {
                 val enabled = sharedPrefs.getBoolean(KEY_ENABLED, false)
 
-                val randomDelay = Random.nextLong(110000, 130000)
-                handler.postDelayed(this, randomDelay)
+                val nextDelayMs = computeNextDelayMs()
+                handler.postDelayed(this, nextDelayMs)
 
                 if (enabled) {
                     performSwipeSafely()
@@ -76,6 +76,16 @@ class SwipeService : AccessibilityService() {
 
     private fun stopAutoSwipe() {
         swipeTask?.let { handler.removeCallbacks(it) }
+    }
+
+    private fun computeNextDelayMs(): Long {
+        val baseSecRaw = sharedPrefs.getInt(KEY_INTERVAL_SEC, DEFAULT_INTERVAL_SEC)
+        val baseSec = clampInt(baseSecRaw, 1, 600)
+
+        val offset = Random.nextInt(-JITTER_SEC, JITTER_SEC + 1)
+        val actualSec = max(MIN_INTERVAL_SEC, baseSec + offset)
+
+        return actualSec.toLong() * 1000L
     }
 
     private fun performSwipeSafely() {
@@ -208,12 +218,18 @@ class SwipeService : AccessibilityService() {
         private const val KEY_START_Y_PCT = "swipe_start_y_pct"
         private const val KEY_END_Y_PCT = "swipe_end_y_pct"
         private const val KEY_DURATION_MS = "swipe_duration_ms"
+        private const val KEY_INTERVAL_SEC = "swipe_interval_sec"
 
         private const val DEFAULT_START_Y_PCT = 86
         private const val DEFAULT_END_Y_PCT = 18
         private const val DEFAULT_DURATION_MS = 180L
+        private const val DEFAULT_INTERVAL_SEC = 120
 
         private const val MIN_GAP_PCT = 5
+
+        // 间隔抖动规则 期望秒数加上随机偏移 正负10秒 最短1秒
+        private const val JITTER_SEC = 10
+        private const val MIN_INTERVAL_SEC = 1
 
         private const val EXTRA_COOLDOWN_MS = 80L
         private const val MAX_CANCEL_RETRY = 2
