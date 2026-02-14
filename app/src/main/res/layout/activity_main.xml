@@ -13,7 +13,7 @@
             android:id="@+id/btn_start_swipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="开始滑屏" />
+            android:text="启动滑屏" />
 
         <Button
             android:id="@+id/btn_stop_swipe"
