@@ -1,31 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center">
+        android:padding="16dp">
 
         <Button
             android:id="@+id/btn_start_swipe"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="开始滑屏" />
 
         <Button
             android:id="@+id/btn_stop_swipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="停止滑屏" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="停止滑屏"
-            android:layout_marginTop="16dp" />
-    </LinearLayout>
+            android:layout_marginTop="16dp"
+            android:text="startY 百分比" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <TextView
+            android:id="@+id/tv_start_y"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="86%" />
+
+        <SeekBar
+            android:id="@+id/sb_start_y"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="95" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="endY 百分比" />
+
+        <TextView
+            android:id="@+id/tv_end_y"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="18%" />
+
+        <SeekBar
+            android:id="@+id/sb_end_y"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="95" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="duration 毫秒" />
+
+        <TextView
+            android:id="@+id/tv_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="180ms" />
+
+        <SeekBar
+            android:id="@+id/sb_duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="800" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="建议范围：startY 85 到 92，endY 10 到 22，duration 120 到 220"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+</ScrollView>
